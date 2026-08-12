@@ -10,3 +10,12 @@ __pycache__/
 
 # Generated databases
 *.sqlite
+
+# Generated visualizations
+*.png
+*.jpg
+*.jpeg
+*.svg
+
+# Logs
+*.log
