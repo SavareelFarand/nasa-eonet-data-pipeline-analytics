@@ -7,7 +7,7 @@
 - Developed a Python-based data pipeline that retrieves and processes NASA EONET event data, stores raw and processed datasets in SQLite, performs geospatial analysis using GeoPandas, and generates statistical visualisasion for each event
 
 ## Description:
-NASA EONET Data Pipeline & Analytics is a three stage ETL (Extract => Transform => Load) pipeline that fetches, cleans, and visualizes global natural disaster event data (and some man-made disaster) from NASA's Earth Observatory Natural Event Tracker (EONET) API.
+NASA EONET Data Pipeline & Analytics is a three stage ETL (Extract => Transform => Load) pipeline that fetches, cleans, and visualises global natural disaster event data (and some man-made disaster) from NASA's Earth Observatory Natural Event Tracker (EONET) API.
 The pipeline is split into three independent, each of which reads from and writes data to its own SQL database:
 
 - `fetch.py`: Streams event data from EONET v3 API with resilient error handling:
@@ -18,7 +18,7 @@ The pipeline is split into three independent, each of which reads from and write
 - `parse.py`: Cleans and restructures raw event data, including a geopandas spatial join  against
    EEZ/land boundary shapefiles to resolve each event's geographic coordinates to a sovereign territory (with explicit handling for [Antarctic Treaty](https://2009-2017.state.gov/t/avc/trty/193967.htm) boundaries and open-ocean events).
 
-- `graph.py`: Generates dual-scale (linear/log) ranking charts by country and category, plus monthly trend visualizations (individual and trellis/small multiples layouts) across all disaster categories, with CLI arguments for filtering by custom date range.
+- `graph.py`: Generates dual-scale (linear/log) ranking charts by country and category, plus monthly trend visualisations (individual and trellis/small multiples layouts) across all disaster categories, with CLI arguments for filtering by custom date range.
 
 ### Design Decisions & Trade-off
 
