@@ -83,7 +83,7 @@ flowchart TB
 ### Python Built-in Libraries
 - **json** - Parsing small-scale JSON data and converting Python objects into JSON string
 - **time & datetime** - Managing request delays and time formats
-- **traceback** - Error handling and system debugging
+- **logging** - Error handling and system debugging
 
 ## Installation
 
@@ -129,28 +129,27 @@ python3 graph.py
 
 ## Results Overview
  - **Country Ranking**
- >![Country Ranking Graph](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-analytics-data-pipeline/refs/heads/main/result_graphs/country_ranking.png)
+ >![Country Ranking Graph](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-data-pipeline-analytics/refs/heads/main/image/country_ranking.png)
 
  - **Category Ranking**
- >![Category Ranking Graph](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-analytics-data-pipeline/refs/heads/main/result_graphs/category_ranking.png)
+ >![Category Ranking Graph](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-data-pipeline-analytics/refs/heads/main/image/category_ranking.png)
 
  - **Event Over Time**
 
     > - **Trellis Graph**
-    >>![Event Over Time Graph](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-analytics-data-pipeline/refs/heads/main/result_graphs/timeline_trellis.png)
+    >>![Event Over Time Graph](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-data-pipeline-analytics/refs/heads/main/image/timeline_trellis.png)
     > - **Separate Line Graph**
-    >>![Floods Graph](https://github.com/SavareelFarand/nasa-eonet-analytics-data-pipeline/blob/main/result_graphs/timeline_floods.png?raw=true)
-    >>![Sea and Lake Ice Graph](https://github.com/SavareelFarand/nasa-eonet-analytics-data-pipeline/blob/main/result_graphs/timeline_sea_and_lake_ice.png?raw=true)
-    >>![Severe Storms](https://github.com/SavareelFarand/nasa-eonet-analytics-data-pipeline/blob/main/result_graphs/timeline_severe_storms.png?raw=true)
-    >>![Volcanoes Graph](https://github.com/SavareelFarand/nasa-eonet-analytics-data-pipeline/blob/main/result_graphs/timeline_volcanoes.png?raw=true)
-    >>![Wildfires Graph](https://github.com/SavareelFarand/nasa-eonet-analytics-data-pipeline/blob/main/result_graphs/timeline_wildfires.png?raw=true)
-
+    >>![Sea and Lake Ice Graph](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-data-pipeline-analytics/refs/heads/main/image/timeline_sea_and_lake_ice.png)
+    >>![Severe Storms](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-data-pipeline-analytics/refs/heads/main/image/timeline_severe_storms.png)
+    >>![Volcanoes Graph](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-data-pipeline-analytics/refs/heads/main/image/timeline_volcanoes.png)
+    >>![Wildfires Graph](https://raw.githubusercontent.com/SavareelFarand/nasa-eonet-data-pipeline-analytics/refs/heads/main/image/timeline_wildfires.png)
 
 ## Current Limitation
 
 - NASA EONET does not publish an official API rate limit. This project limits requests to 10,000 events per query to avoid straining the server
 
 - Uses only the EEZ_land_union dataset, which is less accurate compared than geospatial API
+
 - Spatial accuracy is limited to the point-to-polygon method, which only determines whether a coordinate belongs to a territory
 
 - Results may be affected by data imbalance because NASA EONET provides coordinates based only on observation points
