@@ -13,17 +13,17 @@ The pipeline is split into three independent, each of which reads from and write
 - `fetch.py`: Streams event data from EONET v3 API with resilient error handling:
   exponential backoff for rate limits (429/503) and network instability, connection reuse
   via persistent sessions, and memory-efficient JSON streaming via ijson to handle up to 10,000
-  events without loading the full response into memory. Stores raw, deduplicated data into SQLite
+  events without loading the full response into memory. Stores raw data into SQLite
 
-- `parse.py`: Cleans and restructures raw event data, including a geopandas spatial join  against
+- `parse.py`: Cleans and restructures raw event data, including a geopandas spatial join against
    EEZ/land boundary shapefiles to resolve each event's geographic coordinates to a sovereign territory (with explicit handling for [Antarctic Treaty](https://2009-2017.state.gov/t/avc/trty/193967.htm) boundaries and open-ocean events).
 
 - `graph.py`: Generates dual-scale (linear/log) ranking charts by country and category, plus monthly trend visualisations (individual and trellis/small multiples layouts) across all disaster categories, with CLI arguments for filtering by custom date range.
 
-### Design Decisions & Trade-off
+### Design Decisions
 
 #### Why autoincrementing ID instead of event_id as the PRIMARY KEY?
-- Early in development, `event_id` was used directly as the PRIMARY KEY  for coordinate data. This seemed reasonable since each event has its own `event_id` — But it siliently broke on multi point events. A single events like cyclone can have dozens of entries tracking its path over time, and using `event_id` as primary key meant only the last point for each event ever got stored; ever earlier point was overwritten. This was discovered by manually inspecting a real multi-point cyclone event ([EONET_12376](https://modis.gsfc.nasa.gov/gallery/individual.php?db_date=2025-01-14)) and comparing its expected geometry count against what actually made it into database. The fix was switching to an autoincrementing `id` column with composite `UNIQUE(event_id, lon, lat)` constraint instead.
+- Early in development, `event_id` was used directly as the PRIMARY KEY for coordinate data. This seemed reasonable since each event has its own `event_id` — But it silently broke on multi point events. A single events like cyclone can have dozens of entries tracking its path over time, and using `event_id` as primary key meant only the last point for each event ever got stored; ever earlier point was overwritten. This was discovered by manually inspecting a real multi-point cyclone event ([EONET_12376](https://modis.gsfc.nasa.gov/gallery/individual.php?db_date=2025-01-14)) and comparing its expected geometry count against what actually made it into database. The fix was switching to an autoincrementing `id` column with composite `UNIQUE(event_id, lon, lat)` constraint instead.
 
 #### Why unmatched coordinate fall back to Antarctica and high seas instead of being dropped
 - EEZ/land boundary only have coordinates from an existing sovereign states. It will ignore coordinate that is not belonging to them. Such as Antarctica and high seas.
@@ -32,7 +32,7 @@ The pipeline is split into three independent, each of which reads from and write
 - A simple loop would work, but it cost longer time to load events. Implementing geospatial reduces the time for the program to finish it.
 
 #### Why Trellis (small multiples) chart instead of one shared axis line chart ?
-  - During progress, a one shared axis line chart graph causes some category to be  overlapped by other, more dominant category. Most of the category flattened into a nearly invisible line near zero. Rather than force all categories onto a shared scale (which would misrepresent the smaller categories) or manually pick different scales per category (which would misrepresent relative frequency), the trellis layout gives each category its own subplot with its own y-axis, letting each category's actual trend shape be visible on its own terms while still allowing visual comparison of shape across categories side by side.
+  - During progress, a one shared axis line chart graph causes some category to be overlapped by other, more dominant category. Most of the category flattened into a nearly invisible line near zero. Rather than force all categories onto a shared scale (which would misrepresent the smaller categories) or manually pick different scales per category (which would misrepresent relative frequency), the trellis layout gives each category its own subplot with its own y-axis, letting each category's actual trend shape be visible on its own terms while still allowing visual comparison of shape across categories side by side.
 
 #### Why both linear and log scale bar charts?
 - Country and category ranking are heavily skewed data, but it depends on what data the user wants to see. Some of data might look already neat but most of them isn't. With the implementation of both linear and log scale, the project avoid any misleading information for the user.
