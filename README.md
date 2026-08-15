@@ -8,9 +8,9 @@
 
 ## Description:
 NASA EONET Data Pipeline & Analytics is a three stage ETL (Extract => Transform => Load) pipeline that fetches, cleans, and visualises global natural disaster event data (and some man-made disaster) from NASA's Earth Observatory Natural Event Tracker (EONET) API.
-The pipeline is split into three independent, each of which reads from and writes data to its own SQL database:
+The pipeline is split into three independent:
 
-- `fetch.py`: Streams event data from EONET v3 API with resilient error handling:
+- `fetch.py`: Streams event data from EONET v3 API with error handling, for instance:
   exponential backoff for rate limits (429/503) and network instability, connection reuse
   via persistent sessions, and memory-efficient JSON streaming via ijson to handle up to 10,000
   events without loading the full response into memory. Stores raw data into SQLite
@@ -32,16 +32,16 @@ The pipeline is split into three independent, each of which reads from and write
 - A simple loop would work, but it cost longer time to load events. Implementing geospatial reduces the time for the program to finish it.
 
 #### Why Trellis (small multiples) chart instead of one shared axis line chart ?
-  - During progress, a one shared axis line chart graph causes some category to be overlapped by other, more dominant category. Most of the category flattened into a nearly invisible line near zero. Rather than force all categories onto a shared scale (which would misrepresent the smaller categories) or manually pick different scales per category (which would misrepresent relative frequency), the trellis layout gives each category its own subplot with its own y-axis, letting each category's actual trend shape be visible on its own terms while still allowing visual comparison of shape across categories side by side.
+  - During progress, a one shared axis line chart graph causes some category to be overlapped by the dominant category. Most of the category flattened into a nearly invisible line near zero. The trellis layout gives each category its own subplot with its own y-axis, letting each category's actual trend shape be visible on its own terms while still allowing visual comparison of shape across categories side by side.
 
 #### Why both linear and log scale bar charts?
-- Country and category ranking are heavily skewed data, but it depends on what data the user wants to see. Some of data might look already neat but most of them isn't. With the implementation of both linear and log scale, the project avoid any misleading information for the user.
+- All data from NASA EONET is various, and it depends on what data the user wants to see. Some of data might look already neat but most of them isn't. With the implementation of both linear and log scale, the project avoid any misleading information for the user.
 
 #### Why CLI and standard user input in `graph.py`?
 - CLI offer flexibility and faster respond compared to standard user input, it is designed specifically for user who knows how to use it. Whereas, standard user input works as an alternative if user does not know how to use CLI
 
 #### Other
-- It may depends on what data and internet connection you have to process. But for the best time it took less than ~20s for the three programs to finished completely
+- It may depends on what device specification, data, and internet connection you have to process. But for the best time it took less than ~20s for the three programs to finished completely
 
 ## Features
 
