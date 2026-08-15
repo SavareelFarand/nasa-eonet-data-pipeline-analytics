@@ -35,7 +35,7 @@ The pipeline is split into three independent:
   - During progress, a one shared axis line chart graph causes some category to be overlapped by the dominant category. Most of the category flattened into a nearly invisible line near zero. The trellis layout gives each category its own subplot with its own y-axis, letting each category's actual trend shape be visible on its own terms while still allowing visual comparison of shape across categories side by side.
 
 #### Why both linear and log scale bar charts?
-- All data from NASA EONET is various, and it depends on what data the user wants to see. Some of data might look already neat but most of them isn't. With the implementation of both linear and log scale, the project avoid any misleading information for the user.
+- Data from NASA EONET is highly uneven/skewed, and it depends on what data the user wants to see. Some of data might look already neat but most of them isn't. With the implementation of both linear and log scale, the project avoid any misleading information for the user.
 
 #### Why CLI and standard user input in `graph.py`?
 - CLI offer flexibility and faster respond compared to standard user input, it is designed specifically for user who knows how to use it. Whereas, standard user input works as an alternative if user does not know how to use CLI
