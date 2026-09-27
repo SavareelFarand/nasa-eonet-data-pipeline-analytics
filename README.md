@@ -3,6 +3,9 @@
 ## Video Demo:
 [Click here!](https://www.youtube.com/watch?v=vCGIdU1Tm2U)
 
+## Motivation/The Why
+- I've always been drawn to physics because its problems demand logical and unconventional thinking. After finishing PY4E, I went looking for a programming project to apply what I'd learned, and came across the NASA EONET API endpoint by chance during that search. It connected with data engineering and the majors of my choice (Computer/Information Engineering). This led me to develop NASA EONET Data Pipeline & Analytics (NEDPA) as my first applied project. Its purpose was merely to foster my programming and problem-solving skills rather than aim for complete accuracy.
+
 ## Overview
 - Developed a Python-based data pipeline that retrieves and processes NASA EONET event data, stores raw and processed datasets in SQLite, performs geospatial analysis using GeoPandas, and generates statistical visualisasion for each event
 
