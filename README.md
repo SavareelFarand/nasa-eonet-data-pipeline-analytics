@@ -3,11 +3,11 @@
 ## Video Demo:
 [Click here!](https://www.youtube.com/watch?v=vCGIdU1Tm2U)
 
-## Motivation/The Why
-- After finishing *Python for Everybody (PY4E)*, I went looking for a programming project to apply what I'd learned, and came across the NASA EONET API endpoint by chance during that search. It connected with data engineering and the majors of my choice (Computer/Information Engineering). This led me to develop NASA EONET Data Pipeline & Analytics (NEDPA) as my first applied project. Its purpose was merely to foster my programming and problem-solving skills rather than aim for complete accuracy.
-
 ## Overview
-- Developed a Python-based data pipeline that retrieves and processes NASA EONET event data, stores raw and processed datasets in SQLite, performs geospatial analysis using GeoPandas, and generates statistical visualisasion for each event
+- Developed a Python-based data pipeline that retrieves and processes NASA EONET event data, stores raw and processed datasets in SQLite, performs geospatial analysis using GeoPandas, and generates statistical visualisation for each event
+
+## Motivation/The Why
+- After finishing *Python for Everybody (PY4E)*, I went looking for a programming project to apply what I'd learned, and came across the NASA EONET API endpoint by chance during that search. It connected with data engineering and the majors of my choice (Computer/Information Engineering). This led me to develop NASA EONET Data Pipeline & Analytics (NEDPA) as my first applied project and its purpose was to foster my programming and problem-solving skills.
 
 ## Description:
 NASA EONET Data Pipeline & Analytics is a three stage ETL (Extract => Transform => Load) pipeline that fetches, cleans, and visualises global natural disaster event data (and some man-made disaster) from NASA's Earth Observatory Natural Event Tracker (EONET) API.
